@@ -1,12 +1,20 @@
-import { combineReducers } from 'redux';
-import authReducer from './authReducer';
-import errorReducer from './errorReducer';
-import loaderReducer from './loaderReducer';
+import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import authReducer from "./authReducer";
+import errorReducer from "./errorReducer";
+import loaderReducer from "./loaderReducer";
 
-const rootReducer = combineReducers({ 
-    auth: authReducer,
-    error: errorReducer,
-    loader: loaderReducer,
- })
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["email", "token"],
+};
 
- export default rootReducer;
+const rootReducer = combineReducers({
+  auth: persistReducer(persistConfig, authReducer),
+  error: errorReducer,
+  loader: loaderReducer,
+});
+
+export default rootReducer;

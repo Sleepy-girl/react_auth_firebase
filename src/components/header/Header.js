@@ -1,14 +1,13 @@
-import React from 'react';
-import Navigation from './navigation/Navigation';
-
-
+import React from "react";
+import Navigation from "./navigation/Navigation";
+import styles from "./header.module.css";
 
 const Header = () => {
-    return (
-        <div style={{height: "40px", backgroundColor: "black", width: "100%", display: "flex", alignItems: "center", }}>
-        <Navigation/>
-        </div>
-    );
-}
+  return (
+    <div className={styles.headerWrapper}>
+      <Navigation />
+    </div>
+  );
+};
 
 export default Header;
